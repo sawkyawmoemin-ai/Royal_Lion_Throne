@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap');
+
+/* Universal CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Myanmar', sans-serif !important;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Global Overrides */
+html.dark, html.dark body {
+    background-color: #020617;
+    color: #f8fafc;
+}
+
+/* Background Animation */
+.bg-animate {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+    z-index: -9999;
+    transition: background 0.3s ease;
+}
+
+html.dark .bg-animate {
+    background: radial-gradient(circle at 50% 30%, #0f172a 0%, #020617 60%, #000000 100%);
+}
+
+.bg-animate::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(255,255,255,0) 70%);
+    filter: blur(80px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+html.dark .bg-animate::before {
+    background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Glassmorphism Navigation Header */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+html.dark .glass-nav {
+    background: rgba(15, 23, 42, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+/* Natural Water Ripple Effect */
+.cyber-wave {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid rgba(125, 211, 252, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: waveExpand 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.6), 
+                0 0 28px rgba(14, 165, 233, 0.35), 
+                inset 0 0 8px rgba(125, 211, 252, 0.4);
+    z-index: 40;
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.05);
+        opacity: 0.7;
+    }
+    30% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.5);
+        opacity: 0;
+    }
+}
+
+/* Sidebar Background Throne Watermark */
+#sidebar {
+    position: relative;
+    overflow: hidden;
+}
+
+#sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('throne.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.15; 
+    pointer-events: none;
+    z-index: 0;
+}
+
+html.dark #sidebar::before {
+    opacity: 0.08;
+    filter: invert(1);
+}
+
+#sidebar nav {
+    position: relative;
+    z-index: 10;
+}
+
+
+
+
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-bg {
+    background: linear-gradient(270deg, #020617, #78350f, #311042, #020617);
+    background-size: 300% 300%;
+    animation: gradientFlow 5s ease infinite;
+}
+
+
+
+
+
+/* AI Core Glow & Spin Animations */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+    animation: spinSlow 8s linear infinite;
+}
+
+/* Glass Floating Effect */
+.glass-ai-core {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+@keyframes spinReverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+.animate-spin-reverse {
+    animation: spinReverse 8s linear infinite;
+}
+
+
+@keyframes btnGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-btn-gradient {
+    background: linear-gradient(270deg, #f59e0b, #fbbf24, #d97706, #f59e0b);
+    background-size: 300% 300%;
+    animation: btnGradientFlow 4s ease infinite;
+    border: none;
+}
+
+
+
+
+
+/* Star Rating - Input မဖျောက်ဘဲ ဘေးမှာ တွဲလျက်ပြသရန် */
+.star-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Input လေးများကို ပုံမှန်အတိုင်း ပေါ်စေရန် (display: none မသုံးပါ) */
+.star-rating input[type="radio"] {
+    accent-color: #f59e0b; /* Radio ခလုတ်၏ အရောင်ကို Gradient နဲ့ လိုက်ဖက်အောင် ထားခြင်း */
+    cursor: pointer;
+}
+
+.star-rating label {
+    font-size: 2rem; /* စတားအရွယ်အစား ကြီးစေရန် */
+    background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6, #3b82f6); /* အရောင်စုံ Gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+/* Mouse တင်လိုက်သည့်အခါ ဘယ်ညာ လှုပ်ရှားခြင်း */
+.star-rating label:hover {
+    animation: starWiggle 0.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgba(236, 72, 153, 0.5));
+}
+
+@keyframes starWiggle {
+    0%, 100% {
+        transform: rotate(0deg) scale(1.05);
+    }
+    25% {
+        transform: rotate(-15deg) scale(1.1);
+    }
+    75% {
+        transform: rotate(15deg) scale(1.1);
+    }
+}
+
+
+
+
+
+
+@keyframes holographicShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-holographic-shimmer {
+    background-size: 200% auto;
+    animation: holographicShimmer 4s ease infinite;
+}

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="docTitle3">Chatbot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Custom Style Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="relative h-screen w-screen overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- 1. Background Layer -->
+    <div class="bg-animate fixed inset-0 w-full h-full pointer-events-none"></div>
+
+    <!-- 2. Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full h-24 z-50 px-6 flex justify-between items-center glass-nav border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-none bg-white/40 dark:bg-slate-900/60 backdrop-blur-md transition-colors duration-300">
+        
+        <!-- Glowing Top Border Line -->
+        <div class="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-transparent via-amber-500 via-sky-400 to-transparent animate-pulse"></div>
+
+        <!-- မြန်မာ့ရိုးရာ ပန်းကနုတ် နောက်ခံ Oval Shape -->
+        <div class="flex items-center gap-3.5 bg-gradient-to-b from-amber-200 via-yellow-100 to-amber-300 dark:from-amber-700 dark:via-amber-800 dark:to-amber-900 px-14 py-5 rounded-full border-2 border-amber-500/90 dark:border-amber-400/60 shadow-[0_12px_30px_-5px_rgba(217,119,6,0.25),inset_0_1px_3px_rgba(255,255,255,0.8)] backdrop-blur-xl relative overflow-hidden transition-colors duration-300">
+            <div class="absolute inset-0 opacity-20 bg-[url('kanote-pattern.png')] bg-repeat-x bg-center pointer-events-none"></div>
+            <span data-i18n="mainTitle" class="text-3xl md:text-4xl font-extrabold tracking-wider leading-relaxed text-[#b45309] dark:text-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] relative z-10">သီဟာသနပလ္လင် လမ်းညွှန်</span>
+            <span class="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-amber-900/80 dark:text-amber-300/90 mt-1 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] dark:drop-shadow-none">| Royal Lion Throne |</span>    
+        </div>
+
+        <!-- Left: Larger 3D Robot Icon & Language Switcher Container -->
+        <div class="flex items-center gap-3.5">
+            <!-- ၂။ Holographic Shimmer Border Language Switcher -->
+            <div class="relative p-[4px] rounded-full bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-700 animate-holographic-shimmer shadow-[0_0_60px_rgba(217,119,6,0.7),0_0_25px_rgba(245,158,11,0.5)]">
+                <!-- Right: Language Switcher -->
+                <div class="flex items-center gap-1.5 bg-gradient-to-b from-slate-300/90 to-slate-200/90 dark:from-slate-800/90 dark:to-slate-900/90 backdrop-blur-md p-1.5 rounded-full border border-slate-300 dark:border-slate-700 shadow-inner shadow-slate-300/60 dark:shadow-none text-s relative transition-colors duration-300" >
+                    <button id="lang-btn-mm" onclick="setLang('mm')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-extrabold shadow-md shadow-amber-500/20 transition">မြန်မာ</button>
+                    <button id="lang-btn-en" onclick="setLang('en')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">English</button>
+                    <button id="lang-btn-th" onclick="setLang('th')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">ไทย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container Layout -->
+    <div class="w-full h-screen pt-1 flex overflow-hidden">
+
+        <!-- Left Sidebar Navigation -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 top-24 z-40 w-96 h-[calc(100vh-6rem)] bg-white/50 dark:bg-slate-900/60 backdrop-blur-xl border-r border-slate-200/60 dark:border-slate-800/60 px-6 pb-6 pt-4 shadow-lg shadow-slate-200/40 dark:shadow-none transform -translate-x-full lg:translate-x-0 transition-all duration-300 flex flex-col justify-between relative overflow-y-auto">
+            
+            <nav class="relative z-10 space-y-3 mt-2">
+                <a href="index.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navIndex" class="text-base pointer-events-none">Index</span>
+                </a>
+                <a href="scanner.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navScanner" class="text-base pointer-events-none">Scanner</span>
+                </a>
+                <a href="chatbot.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/20 text-amber-800 dark:text-amber-300 font-bold shadow-sm transition">
+                    <span data-i18n="navChatbot" class="text-base pointer-events-none">Chatbot</span>
+                </a>
+                <a href="ar-view.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navArView" class="text-base pointer-events-none">AR-View</span>
+                </a>
+                <a href="feedback.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navFeedback" class="text-base pointer-events-none">Feedback</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Theme Toggle Switch (Sidebar အောက်ခြေတွင် ထည့်သွင်းထားသည်) -->
+            <div class="relative z-10 pt-4 mb-2 border-t border-slate-200/60 dark:border-slate-800/60">
+                <button id="theme-toggle" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" onclick="toggleTheme()" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:bg-white/90 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold shadow-sm transition">
+                    <span id="theme-text" class="text-sm">Dark Theme သို့ပြောင်းရန်</span>
+                    <span id="theme-icon" class="text-xl"></span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleSidebar()" class="lg:hidden fixed bottom-6 right-6 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 p-4 rounded-full shadow-2xl text-xl font-bold">
+            ☰
+        </button>
+        
+        <!-- Right Main Content Area (Layout နှင့် Spacing ချိန်ညှိပြီး) -->
+        <main class="flex-1 h-full p-4 md:p-8 pt-28 md:pt-32 m-0 overflow-y-auto relative bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 dark:from-slate-900 dark:via-slate-950 dark:to-black shadow-inner transition-colors duration-300 flex flex-col items-center justify-start">
+            <div class="w-full max-w-3xl rounded-3xl p-6 border border-white/80 dark:border-slate-800/80 shadow-2xl shadow-slate-400/40 dark:shadow-none bg-white/50 dark:bg-slate-900/50 backdrop-blur-md relative my-auto mb-16 space-y-6">
+                
+                <!-- Chat Interface Card -->
+                <div class="card card-custom shadow-sm bg-transparent border-0 w-full">
+                    <div class="card-header card-header-custom flex flex-col md:flex-row items-start md:items-center justify-between gap-4 rounded-t-2xl py-4 px-5 border-bottom border-amber-500/30 shadow-lg animate-gradient-bg">
+                        <!-- Left: Larger 3D Robot Icon & Title -->
+                        <div class="flex items-center gap-3.5">
+                        <!-- High-End Futuristic 3D AI Core Icon Box -->
+                        <div onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="group relative flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 via-sky-950 to-amber-950 p-[1.5px] shadow-[0_10px_25px_rgba(14,165,233,0.35),0_0_15px_rgba(217,119,6,0.2)] hover:shadow-[0_12px_30px_rgba(14,165,233,0.5),0_0_20px_rgba(245,158,11,0.4)] transition-all duration-500 hover:scale-105 flex-shrink-0 cursor-pointer">
+                                <!-- Outer Rotating Futuristic Ring -->
+                                <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500 via-amber-400 to-sky-500 opacity-70 blur-[2px] animate-spin-slow group-hover:opacity-100 transition-opacity"></div>
+
+                                <!-- Inner Glass Container -->
+                                <div class="relative w-full h-full rounded-[14px] bg-slate-950/80 backdrop-blur-md flex items-center justify-center overflow-hidden border border-white/20">
+                                    
+                                    <!-- Glowing Core Background Light -->
+                                    <div class="absolute w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-amber-400 blur-md opacity-60 group-hover:scale-125 transition-transform duration-500"></div>
+
+                                    <!-- Advanced 3D AI Brain / Spark Icon (SVG) -->
+                                    <svg class="relative z-10 w-7 h-7 text-amber-300 drop-shadow-[0_2px_8px_rgba(245,158,11,0.8)] group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <!-- Path 1: Solid Realistic Shield Base with Rich Fill -->
+                                        <path d="M12 2L20.5 6.5V13C20.5 18 17 21.5 12 23C7 21.5 3.5 18 3.5 13V6.5L12 2Z" class="fill-slate-900 stroke-amber-400" stroke-width="1.8" stroke-linejoin="round"/>
+                                        
+                                        <!-- Path 2: Inner Shield Accent Glow -->
+                                        <path d="M12 4L18.5 7.5V13C18.5 16.8 15.8 19.8 12 21C8.2 19.8 5.5 16.8 5.5 13V7.5L12 4Z" class="fill-amber-500/15 stroke-amber-300/60" stroke-width="2"/>
+                                        
+                                        <!-- Path 3: Central Crystal Core (Filled for realism) -->
+                                        <path d="M12 7.5L15.5 11.5L12 15.5L8.5 11.5L12 7.5Z" class="fill-cyan-400/40 stroke-cyan-300" stroke-width="1.8" stroke-linejoin="round"/>
+                                        
+                                        <!-- Path 4: Center Neural Spark Core -->
+                                        <path d="M12 10.5V12.5M11 11.5H13" class="stroke-white" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <!-- Rotating Container for 4 Dots (Anti-clockwise) -->
+                                    <div class="absolute inset-0 animate-spin-reverse pointer-events-none">
+                                        <span class="absolute top-1 right-1 flex h-1 w-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1 w-1 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+                                        </span>
+                                        <span class="absolute top-1 left-1 flex h-1 w-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1 w-1 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+                                        </span>
+                                        <span class="absolute bottom-1 right-1 flex h-1 w-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1 w-1 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+                                        </span>
+                                        <span class="absolute bottom-1 left-1 flex h-1 w-1">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-1 w-1 bg-cyan-500 shadow-[0_0_8px_#06b6d4]"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>        
+                            <div>
+                                <h5 class="mb-0 font-bold text-amber-400 text-base md:text-lg tracking-wide" id="chat-header">Thiharthana Multilingual AI Assistant</h5>
+                                <p class="text-xs text-slate-300 mb-0 mt-0.5">အဆင့်မြင့် ဘာသာစကား ၃မျိုးရ အေအိုင်လက်ထောက်</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="chat-messages" class="card-body overflow-auto p-4 bg-white/60 dark:bg-slate-900/60 rounded-b-2xl shadow-inner space-y-3 flex flex-col justify-end" style="height: 350px;">
+                        <div class="mb-3 text-start">
+                            <span id="welcome-msg" class="bot-msg-card chat-msg-box d-inline-block p-3 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-sm" data-i18n="chatbotIntro">
+                                သီဟာသနပလ္လင်နှင့် ပတ်သက်သောမေးခွန်းများကို - ဘာသာစကား ၃မျိုးဖြင့် မေးမြန်းနိုင်ပါသည်။
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Question Tags Container -->
+                    <div class="px-2 pt-3 pb-2">
+                        <p class="small text-secondary mb-2 fw-semibold" id="suggested-title" data-i18n="faqTitle">လူမေးများသော မေးခွန်းများမှာ -</p>
+                        <div id="suggested-tags-container" class="d-flex flex-wrap gap-2">
+                            <!-- Dynamically injected suggested question tags -->
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer bg-transparent p-3 border-top border-slate-200 dark:border-slate-700">
+                        <div class="input-group gap-4">
+                            <input type="text" id="chat-input" class="form-control shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl px-3 py-2" placeholder="မေးခွန်း ရိုက်ထည့်ရန်..." onkeypress="if(event.key === 'Enter') sendChatMessage()" data-i18n-placeholder="questionPlaceholder">
+                            <button class="btn btn-sm px-4 py-2 fw-bold shadow-md rounded-full animate-btn-gradient text-slate-950 transition-all duration-300 hover:scale-105" onclick="sendChatMessage()" id="send-btn" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" data-i18n="sendBtn">ပေးပို့ပါမည်</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🧠 Chatbot အား အချက်အလက်အသစ် သင်ယူစေမည့် Form -->
+                <div class="card card-custom learn-card shadow-sm border border-slate-200/60 dark:border-sထlate-700/60 rounded-2xl bg-white/60 dark:bg-slate-900/60 w-full">
+                    <div class="card-header bg-transparent text-amber-600 dark:text-amber-400 border-bottom border-slate-200 dark:border-slate-700 py-3 px-4">
+                        <h6 class="mb-0 fw-bold text-sm md:text-base" id="learn-header" data-i18n="learnTitle">Chatbot အား အချက်အလက်အသစ်များ ထပ်မံသင်ယူစေရန်</h6>
+                    </div>
+                    <div class="card-body p-4 space-y-3">
+                        <div class="mb-3">
+                            <label for="learn-q" class="form-label small fw-bold text-secondary dark:text-slate-400 mb-1 block w-full" id="label-learn-q" data-i18n="labelQuestion">မေးခွန်း:</label>
+                            <input type="text" id="learn-q" class="form-control form-control-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg p-2 w-full" placeholder="ဥပမာ - ပလ္လင်၏အစွန်းအဖျားတွင် မည်သည့် ရုပ်ထုများ ရှိပါသနည်း။" data-i18n-placeholder="exQuestion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="learn-a" class="form-label small fw-bold text-secondary dark:text-slate-400 mb-1 block w-full" id="label-learn-a" data-i18n="labelAnswer">အဖြေ:</label>
+                            <textarea id="learn-a" class="form-control form-control-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg p-2 w-full" rows="2" placeholder="အသေးစိတ်အဖြေများကို ရိုက်ထည့်ပါ..." data-i18n-placeholder="answerPlaceholder"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center gap-4 pt-1">
+                            <select id="learn-lang" class="form-select form-select-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-lg" style="width: 140px;" onchange="setLang(this.value)">
+                                <option value="my">မြန်မာ</option>
+                                <option value="en">English</option>
+                                <option value="th">ไทย</option>
+                            </select>
+                            <button class="btn btn-sm px-4 py-2 fw-bold shadow-md rounded-full animate-btn-gradient text-slate-950 transition-all duration-300 hover:scale-105" onclick="teachChatbot()" id="learn-btn" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" data-i18n="learnBtn">အချက်အလက်များအား သင်ယူမည်။</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>

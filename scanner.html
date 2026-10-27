@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="docTitle2">Scanner</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Custom Style Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="relative h-screen w-screen overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- 1. Background Layer -->
+    <div class="bg-animate fixed inset-0 w-full h-full pointer-events-none"></div>
+
+    <!-- 2. Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full h-24 z-50 px-6 flex justify-between items-center glass-nav border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-none bg-white/40 dark:bg-slate-900/60 backdrop-blur-md transition-colors duration-300">
+        
+        <!-- Glowing Top Border Line -->
+        <div class="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-transparent via-amber-500 via-sky-400 to-transparent animate-pulse"></div>
+
+        <!-- မြန်မာ့ရိုးရာ ပန်းကနုတ် နောက်ခံ Oval Shape -->
+        <div class="flex items-center gap-3.5 bg-gradient-to-b from-amber-200 via-yellow-100 to-amber-300 dark:from-amber-700 dark:via-amber-800 dark:to-amber-900 px-14 py-5 rounded-full border-2 border-amber-500/90 dark:border-amber-400/60 shadow-[0_12px_30px_-5px_rgba(217,119,6,0.25),inset_0_1px_3px_rgba(255,255,255,0.8)] backdrop-blur-xl relative overflow-hidden transition-colors duration-300">
+            <div class="absolute inset-0 opacity-20 bg-[url('kanote-pattern.png')] bg-repeat-x bg-center pointer-events-none"></div>
+            <span data-i18n="mainTitle" class="text-3xl md:text-4xl font-extrabold tracking-wider leading-relaxed text-[#b45309] dark:text-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] relative z-10">သီဟာသနပလ္လင် လမ်းညွှန်</span>
+            <span class="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-amber-900/80 dark:text-amber-300/90 mt-1 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] dark:drop-shadow-none">| Royal Lion Throne |</span>    
+        </div>
+        
+        <!-- Left: Larger 3D Robot Icon & Language Switcher Container -->
+        <div class="flex items-center gap-3.5">
+            <!-- ၂။ Holographic Shimmer Border Language Switcher -->
+            <div class="relative p-[4px] rounded-full bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-700 animate-holographic-shimmer shadow-[0_0_60px_rgba(217,119,6,0.7),0_0_25px_rgba(245,158,11,0.5)]">
+                <!-- Right: Language Switcher -->
+                <div class="flex items-center gap-1.5 bg-gradient-to-b from-slate-300/90 to-slate-200/90 dark:from-slate-800/90 dark:to-slate-900/90 backdrop-blur-md p-1.5 rounded-full border border-slate-300 dark:border-slate-700 shadow-inner shadow-slate-300/60 dark:shadow-none text-s relative transition-colors duration-300" >
+                    <button id="lang-btn-mm" onclick="setLang('mm')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-extrabold shadow-md shadow-amber-500/20 transition">မြန်မာ</button>
+                    <button id="lang-btn-en" onclick="setLang('en')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">English</button>
+                    <button id="lang-btn-th" onclick="setLang('th')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">ไทย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container Layout -->
+    <div class="w-full h-screen pt-1 flex overflow-hidden">
+
+        <!-- Left Sidebar Navigation -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 top-24 z-40 w-96 h-[calc(100vh-6rem)] bg-white/50 dark:bg-slate-900/60 backdrop-blur-xl border-r border-slate-200/60 dark:border-slate-800/60 px-6 pb-6 pt-4 shadow-lg shadow-slate-200/40 dark:shadow-none transform -translate-x-full lg:translate-x-0 transition-all duration-300 flex flex-col justify-between relative overflow-y-auto">
+            
+            <nav class="relative z-10 space-y-3 mt-2">
+                <a href="index.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navIndex" class="text-base pointer-events-none">Index</span>
+                </a>
+                <a href="scanner.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/20 text-amber-800 dark:text-amber-300 font-bold shadow-sm transition">
+                    <span data-i18n="navScanner" class="text-base pointer-events-none">Scanner</span>
+                </a>
+                <a href="chatbot.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navChatbot" class="text-base pointer-events-none">Chatbot</span>
+                </a>
+                <a href="ar-view.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navArView" class="text-base pointer-events-none">AR-View</span>
+                </a>
+                <a href="feedback.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navFeedback" class="text-base pointer-events-none">Feedback</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Theme Toggle Switch (Sidebar အောက်ခြေတွင် ထည့်သွင်းထားသည်) -->
+            <div class="relative z-10 pt-4 mb-2 border-t border-slate-200/60 dark:border-slate-800/60">
+                <button id="theme-toggle" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" onclick="toggleTheme()" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:bg-white/90 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold shadow-sm transition">
+                    <span id="theme-text" class="text-sm">Dark Theme သို့ပြောင်းရန်</span>
+                    <span id="theme-icon" class="text-xl"></span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleSidebar()" class="lg:hidden fixed bottom-6 right-6 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 p-4 rounded-full shadow-2xl text-xl font-bold">
+            ☰
+        </button>
+        <!-- Right Main Content Area (Scanner UI နေရာချထားမှု ပြင်ဆင်ပြီး) -->
+        <main class="flex-1 h-full p-4 md:p-8 m-0 overflow-y-auto relative bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 dark:from-slate-900 dark:via-slate-950 dark:to-black shadow-inner transition-colors duration-300 flex flex-col items-center justify-center">
+            <div class="w-full max-w-3xl rounded-3xl p-6 border border-white/80 dark:border-slate-800/80 shadow-2xl shadow-slate-400/40 dark:shadow-none bg-white/50 dark:bg-slate-900/50 backdrop-blur-md relative my-auto mb-16">
+                
+                <!-- Google Lens Scanner Section -->
+                <div class="mb-4">
+                    <h4 id="upload-heading" class="text-xl font-bold text-amber-600 dark:text-amber-400 mb-3" data-i18n="scanTitle">ပလ္လင်ကို ဓာတ်ပုံစကင်ဖတ်၍ လေ့လာရန်</h4>
+                    
+                    <!-- Google Lens Viewfinder UI -->
+                    <div id="lens-viewfinder" class="w-full mb-4 shadow-lg rounded-2xl overflow-hidden relative bg-slate-900 flex items-center justify-center" style="height: 380px;">
+                        <video id="camera-video" autoplay playsinline class="hidden w-full h-full object-cover absolute inset-0"></video>
+                        
+                        <div id="image-wrapper" class="absolute inset-0 hidden items-center justify-center bg-black/40">
+                            <img id="image-preview" alt="Selected Preview" class="max-h-full max-w-full object-contain">
+                            
+                            <div id="detection-highlight-box" class="absolute rounded-lg hidden shadow-lg pointer-events-none" style="border: 3px solid #0dcaf0; background-color: rgba(13, 202, 240, 0.25); transition: all 0.3s ease; z-index: 5;">
+                                <span id="highlight-badge" class="absolute -top-7 left-1/2 -translate-x-1/2 bg-info text-dark font-bold px-2 py-0.5 rounded shadow text-xs whitespace-nowrap"></span>
+                            </div>
+                        </div>
+
+                        <!-- Centered Instruction Text -->
+                        <div id="lens-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white z-1">
+                            <p id="lens-instruction" class="opacity-75 mb-0 text-sm md:text-base" data-i18n="scanInstructions">ကင်မရာဖွင့်ရန် (သို့) ပုံတင်ရန် အောက်ပါခလုတ်များအား နှိပ်ပါ</p>
+                        </div>
+                        
+                        <!-- Overlay controls -->
+                        <div id="lens-overlay-container" class="absolute bottom-0 inset-x-0 p-3 flex flex-col items-center z-10" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            <div class="text-center text-white bg-dark/80 rounded-full py-1 px-3 mb-2 shadow-sm text-xs md:text-sm" id="lens-tip" data-i18n="alignObject">အချက်အလက်အတွက် အရာဝတ္ထုကို ချိန်ပါ</div>
+
+                            <div class="flex items-center gap-4">
+                                <!-- 3D Styled Camera Button -->
+                                <button onclick="openNativeCamera()" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="group relative w-11 h-11 rounded-full bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-600 hover:from-slate-700 hover:to-slate-500 text-white flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.3),inset_0_2px_3px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all duration-300 border border-slate-600/50" title="Camera">
+                                    <svg class="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </button>
+                                
+                                <!-- 3D Styled Gallery/Search Button -->
+                                <button onclick="document.getElementById('imageInput').click()" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="group relative w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-400 hover:from-amber-500 hover:to-yellow-300 text-slate-950 flex items-center justify-center shadow-[0_10px_25px_rgba(217,119,6,0.4),inset_0_2px_4px_rgba(255,255,255,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 border border-amber-300/60" title="Gallery Search">
+                                    <svg class="w-6 h-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    </svg>
+                                </button>
+                                
+                                <!-- 3D Styled Capture Button -->
+                                <button onclick="captureLiveImage()" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" id="capture-btn" class="group relative w-11 h-11 rounded-full bg-gradient-to-tr from-red-700 via-red-600 to-rose-500 hover:from-red-600 hover:to-rose-400 text-white hidden items-center justify-center shadow-[0_8px_20px_rgba(220,38,38,0.4),inset_0_2px_3px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 border border-red-400/50" title="Capture">
+                                    <div class="w-5 h-5 rounded-full bg-white shadow-inner group-hover:scale-90 transition-transform duration-300"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Inputs -->
+                    <input type="file" id="cameraInput" class="hidden" accept="image/*" capture="environment">
+                    <input type="file" id="imageInput" class="hidden" accept="image/*">
+                    <!-- 3D Styled & Wave Effect ပါဝင်သော စကင်ဖတ်မည် ခလုတ် -->
+                    <button onclick="predictArtifact()" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="btn btn-sm px-4 py-2 fw-bold shadow-md rounded-full animate-btn-gradient text-slate-950 transition-all duration-300 hover:scale-105 mx-auto block" id="scan-btn" data-i18n="scanBtn">
+                        စကင်ဖတ်မည်
+                    </button>
+                </div>
+                
+                <!-- Result Section (3D Animated SVG Icons ထည့်သွင်းပြီး) -->
+                <div id="result-card" class="mt-6 p-4 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-700/60 hidden">
+                    <h5 id="result-heading" class="font-bold text-amber-600 dark:text-amber-400 mb-3 text-lg flex items-center gap-2">
+                        <span class="inline-flex p-1.5 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow-md">
+                            <svg class="w-5 h-5 drop-shadow" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        ခန့်မှန်းချက် ရလဒ်များ:
+                    </h5>
+                    <ul id="prediction-list" class="space-y-2 mb-4"></ul>
+                    
+                    <div id="description-container" class="hidden mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <h6 id="desc-heading" class="font-bold text-slate-700 dark:text-slate-300 mb-2 flex items-center gap-2">
+                            <!-- 3D Styled Pin Icon -->
+                            <span class="inline-flex p-1.5 rounded-lg bg-gradient-to-tr from-sky-600 via-sky-500 to-blue-400 text-white shadow-[0_4px_10px_rgba(14,165,233,0.4)]">
+                                <svg class="w-4 h-4 drop-shadow group-hover:rotate-45 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                </svg>
+                            </span>
+                            ဖော်ပြချက်:
+                        </h6>
+                        <div id="detected-class-title" class="font-bold text-amber-600 dark:text-amber-400 mb-2"></div>
+                        <p id="artifact-desc" class="p-3 bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl text-sm leading-relaxed mb-3"></p>
+                        
+                        <div id="tts-progress-container" class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden hidden mb-3">
+                            <div id="tts-progress-bar" class="bg-info h-full w-0 transition-all duration-150"></div>
+                        </div>
+
+                        <!-- 3D Styled TTS Button with Animated Speaker Icon -->
+                        <button onclick="playTTSWithHighlight()" class="group w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-bold shadow-[0_6px_20px_rgba(217,119,6,0.35),inset_0_2px_3px_rgba(255,255,255,0.6)] hover:scale-[1.02] active:scale-95 transition-all duration-300 text-sm flex items-center justify-center gap-2.5 border border-amber-300" id="tts-btn">
+                            <span class="p-1 rounded-lg bg-slate-950/10 group-hover:scale-110 transition-transform">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                                </svg>
+                            </span>
+                            အသံဖိုင် နားဆင်မည် (TTS)
+                        </button>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+        
+

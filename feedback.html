@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="my" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="docTitle5">Feedback</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <!-- Custom Style Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="relative h-screen w-screen overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- 1. Background Layer -->
+    <div class="bg-animate fixed inset-0 w-full h-full pointer-events-none"></div>
+
+    <!-- 2. Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full h-24 z-50 px-6 flex justify-between items-center glass-nav border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-none bg-white/40 dark:bg-slate-900/60 backdrop-blur-md transition-colors duration-300">
+        
+        <!-- Glowing Top Border Line -->
+        <div class="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-transparent via-amber-500 via-sky-400 to-transparent animate-pulse"></div>
+
+        <!-- မြန်မာ့ရိုးရာ ပန်းကနုတ် နောက်ခံ Oval Shape -->
+        <div class="flex items-center gap-3.5 bg-gradient-to-b from-amber-200 via-yellow-100 to-amber-300 dark:from-amber-700 dark:via-amber-800 dark:to-amber-900 px-14 py-5 rounded-full border-2 border-amber-500/90 dark:border-amber-400/60 shadow-[0_12px_30px_-5px_rgba(217,119,6,0.25),inset_0_1px_3px_rgba(255,255,255,0.8)] backdrop-blur-xl relative overflow-hidden transition-colors duration-300">
+            <div class="absolute inset-0 opacity-20 bg-[url('kanote-pattern.png')] bg-repeat-x bg-center pointer-events-none"></div>
+            <span data-i18n="mainTitle" class="text-3xl md:text-4xl font-extrabold tracking-wider leading-relaxed text-[#b45309] dark:text-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] relative z-10">သီဟာသနပလ္လင် လမ်းညွှန်</span>
+            <span class="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-amber-900/80 dark:text-amber-300/90 mt-1 drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] dark:drop-shadow-none">| Royal Lion Throne |</span>    
+        </div>
+
+        <!-- Left: Larger 3D Robot Icon & Language Switcher Container -->
+        <div class="flex items-center gap-3.5">
+            <!-- ၂။ Holographic Shimmer Border Language Switcher -->
+            <div class="relative p-[4px] rounded-full bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-700 animate-holographic-shimmer shadow-[0_0_60px_rgba(217,119,6,0.7),0_0_25px_rgba(245,158,11,0.5)]">
+                <!-- Right: Language Switcher -->
+                <div class="flex items-center gap-1.5 bg-gradient-to-b from-slate-300/90 to-slate-200/90 dark:from-slate-800/90 dark:to-slate-900/90 backdrop-blur-md p-1.5 rounded-full border border-slate-300 dark:border-slate-700 shadow-inner shadow-slate-300/60 dark:shadow-none text-s relative transition-colors duration-300" >
+                    <button id="lang-btn-mm" onclick="setLang('mm')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-extrabold shadow-md shadow-amber-500/20 transition">မြန်မာ</button>
+                    <button id="lang-btn-en" onclick="setLang('en')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">English</button>
+                    <button id="lang-btn-th" onclick="setLang('th')" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="lang-btn relative px-3.5 py-2 rounded-full hover:bg-white/90 dark:hover:bg-slate-700 transition text-slate-900 dark:text-slate-100 font-bold">ไทย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container Layout -->
+    <div class="w-full h-screen pt-1 flex overflow-hidden">
+
+        <!-- Left Sidebar Navigation -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 top-24 z-40 w-96 h-[calc(100vh-6rem)] bg-white/50 dark:bg-slate-900/60 backdrop-blur-xl border-r border-slate-200/60 dark:border-slate-800/60 px-6 pb-6 pt-4 shadow-lg shadow-slate-200/40 dark:shadow-none transform -translate-x-full lg:translate-x-0 transition-all duration-300 flex flex-col justify-between relative overflow-y-auto">
+            
+            <nav class="relative z-10 space-y-3 mt-2">
+                <a href="index.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navIndex" class="text-base pointer-events-none">Index</span>
+                </a>
+                <a href="scanner.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navScanner" class="text-base pointer-events-none">Scanner</span>
+                </a>
+                <a href="chatbot.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navChatbot" class="text-base pointer-events-none">Chatbot</span>
+                </a>
+                <a href="ar-view.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70 transition text-slate-700 dark:text-slate-200 font-semibold shadow-2xs">
+                    <span data-i18n="navArView" class="text-base pointer-events-none">AR-View</span>
+                </a>
+                <a href="feedback.html" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" class="relative block px-4 py-3 rounded-2xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/20 text-amber-800 dark:text-amber-300 font-bold shadow-sm transition">
+                    <span data-i18n="navFeedback" class="text-base pointer-events-none">Feedback</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Theme Toggle Switch (Sidebar အောက်ခြေတွင် ထည့်သွင်းထားသည်) -->
+            <div class="relative z-10 pt-4 mb-2 border-t border-slate-200/60 dark:border-slate-800/60">
+                <button id="theme-toggle" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" onclick="toggleTheme()" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:bg-white/90 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold shadow-sm transition">
+                    <span id="theme-text" class="text-sm">Dark Theme သို့ပြောင်းရန်</span>
+                    <span id="theme-icon" class="text-xl"></span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleSidebar()" class="lg:hidden fixed bottom-6 right-6 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 p-4 rounded-full shadow-2xl text-xl font-bold">
+            ☰
+        </button>
+        
+        <!-- Right Main Content Area (Feedback Form Container with Scroll) -->
+        <main class="flex-1 h-full p-3 md:p-6 m-0 overflow-y-auto relative bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 dark:from-slate-900 dark:via-slate-950 dark:to-black shadow-inner flex flex-col items-center">
+            <div class="w-full max-w-3xl rounded-3xl overflow-hidden border border-white/80 dark:border-slate-800/80 shadow-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-md relative p-5 md:p-8 my-auto">
+                
+                <div class="text-center mb-5">
+                    <h3 class="fw-bold text-amber-600 dark:text-amber-400 mb-5 fs-5 text-lg font-bold" id="form-title" data-i18n="feedbackHeader">အကြံပြုချက်တောင်းခံရန်</h3>
+                    <p class="text-slate-600 dark:text-slate-300 small mb-0" id="form-subtitle" data-i18n="feedbackSubtitle">သီဟာသနပလ္လင်တော် ပြတိုက်တွင် သင်၏အတွေ့အကြုံများကို ပြန်လည်မျှဝေပေးပါရန်။</p>
+                </div>
+
+            <form id="feedback-form" onsubmit="submitFeedback(event)" class="space-y-4">
+                <!-- အမည် -->
+                <div>
+                    <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-name" data-i18n="lblName">အမည်:</label>
+                    <input type="text" id="user_name" class="form-control form-control-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" placeholder="အမည် ရိုက်ထည့်ပေးပါ..." maxlength="100" data-i18n-placeholder="namePlaceholder" required>
+                </div>
+
+                <!-- Zone နှင့် နိုင်ငံ (တစ်တန်းတည်း ညီညာစေရန်) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-zone" data-i18n="lblZone">ဒေသ:</label>
+                        <select id="zone_select" class="form-select form-select-sm shadow-none mb-2 bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" onchange="updateCountries()" required>
+                            <option value="" id="opt-zone-default" data-i18n="optZoneDefault">-- ဒေသ ရွေးပါ --</option>
+                            <option value="Asia" id="opt-asia" data-i18n="optAsia">အာရှ</option>
+                            <option value="Europe" id="opt-europe" data-i18n="optEurope">ဥရောပ</option>
+                            <option value="Americas" id="opt-americas" data-i18n="optAmericas">အမေရိက</option>
+                            <option value="Other" id="opt-zone-other" data-i18n="optOther">အခြား</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-country" data-i18n="lblCountry">နိုင်ငံ:</label>
+                        <select id="country" class="form-select form-select-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" required>
+                            <option value="" id="opt-country-default" data-i18n="optCountryDefault">ပထမဦးစွာ ဒေသ ကို ရွေးပါ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- အသက်အုပ်စု နှင့် ကျား/မ (တစ်တန်းတည်း ညီညာစေရန်) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-age" data-i18n="lblAge">အသက်အုပ်စု:</label>
+                        <select id="age_range" class="form-select form-select-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" required>
+                            <option value="" id="opt-age-default" data-i18n="optAgeDefault">-- အသက်အုပ်စု ရွေးပါ --</option>
+                            <option value="Under 18" id="opt-under18" data-i18n="optUnder18">၁၈ နှစ်အောက်</option>
+                            <option value="18-25" id="opt-18-25" data-i18n="opt18_25">၁၈ မှ ၂၅</option>
+                            <option value="26-35" id="opt-26-35" data-i18n="opt26_35">၂၆ မှ ၃၅</option>
+                            <option value="36-50" id="opt-36-50" data-i18n="opt36_50">၃၆ မှ ၅၀</option>
+                            <option value="50+" id="opt-50-plus" data-i18n="opt50Plus">၅၀ နှင့် အထက်</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-gender" data-i18n="lblGender">ကျား/မ:</label>
+                        <select id="gender" class="form-select form-select-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" required>
+                            <option value="Male" id="opt-male" data-i18n="optMale">ကျား</option>
+                            <option value="Female" id="opt-female" data-i18n="optFemale">မ</option>
+                            <option value="Other" id="opt-gender-other" data-i18n="optGenderOther">အခြား / မဖော်ပြလိုပါ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- အကြိုက်ဆုံး အထပ်နှင့်ခန်းမ -->
+                <div>
+                    <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-fav-room" data-i18n="lblFavRoom">အကြိုက်ဆုံး အထပ်နှင့်ခန်းမ:</label>
+                    <select id="fav_room" class="form-select form-select-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" required>
+                        <option value="" id="opt-room-default" data-i18n="optRoomDefault">-- အထပ်နှင့် ခန်းမအား ရွေးပါ --</option>
+                        <optgroup label="မြေညီထပ်" id="grp-ground" data-i18n="groupGround">
+                            <option value="Ground - Lion Throne Exhibition Room" id="opt-room-g1" data-i18n="roomG1">မြေညီထပ် - သီဟာသနပလ္လင်ပြခန်း</option>
+                            <option value="Ground - Yadanabon Period Exhibition Room" id="opt-room-g2" data-i18n="roomG2">မြေညီထပ် - ရတနာပုံခေတ်ပြခန်း</option>
+                            <option value="Ground - Myanmar Epigraphy and Calligraphy Exhibition Room" id="opt-room-g3" data-i18n="roomG3">မြေညီထပ် - ကျောက်စာနှင့် လက်ရေးမူပြခန်း</option>
+                        </optgroup>
+                        <optgroup label="ပထမထပ်" id="grp-first" data-i18n="groupFirst">
+                            <option value="First - Royal Regalia Exhibition Room" id="opt-room-f1" data-i18n="roomF1">ပထမထပ် - မင်းခမ်းမင်းနားပစ္စည်းများပြခန်း</option>
+                            <option value="First - Myanmar Civilization Exhibition Room" id="opt-room-f2" data-i18n="roomF2">ပထမထပ် - မြန်မာ့ယဉ်ကျေးမှုပြခန်း</option>
+                            <option value="First - Natural History and Myanmar Prehistoric Period Exhibition Room" id="opt-room-f3" data-i18n="roomF3">ပထမထပ် - သဘာဝသမိုင်းနှင့် ကျောက်ခေတ်ပြခန်း</option>
+                        </optgroup>
+                        <optgroup label="ဒုတိယထပ်" id="grp-second0" data-i18n="groupSecond">
+                            <option value="Second - Myanmar Performing Arts Exhibition Room" id="opt-room-s1" data-i18n="roomS1">ဒုတိယထပ် - မြန်မာ့ဇာတ်သဘင်အနုပညာပြခန်း</option>
+                            <option value="Second - Myanmar Arts and Crafts Exhibition Room" id="opt-room-s2" data-i18n="roomS2">ဒုတိယထပ် - မြန်မာ့လက်မှုပညာပြခန်း</option>
+                        </optgroup>
+                        <optgroup label="တတိယထပ်" id="grp-third" data-i18n="groupThird">
+                            <option value="Third - Myanmar Ancient Ornaments Exhibition Room" id="opt-room-t1" data-i18n="roomT1">တတိယထပ် - မြန်မာ့ရှေးဟောင်းလက်ဝတ်ရတနာပြခန်း</option>
+                            <option value="Third - Myanmar Art Gallery" id="opt-room-t2" data-i18n="roomT2">တတိယထပ် - မြန်မာ့အနုပညာပြခန်း</option>
+                        </optgroup>
+                        <optgroup label="စတုတ္ထထပ်" id="grp-fourth" data-i18n="groupFourth">
+                            <option value="Fourth - Buddhist Arts Exhibition Room" id="opt-room-4th1" data-i18n="room4th1">စတုတ္ထထပ် - ဗုဒ္ဓဘာသာအနုပညာပြခန်း</option>
+                            <option value="Fourth - ASEAN Exhibition Room" id="opt-room-4th2" data-i18n="room4th2">စတုတ္ထထပ် - အာဆီယံပြခန်း</option>
+                            <option value="Fourth - Culture of National Races Exhibition Room" id="opt-room-4th3" data-i18n="room4th3">စတုတ္ထထပ် - တိုင်းရင်းသားယဉ်ကျေးမှုပြခန်</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Star Rating -->
+                <div>
+                    <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-rating" data-i18n="lblRating">သုံးသပ်ချက်အဆင့်ပေးရန်:</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" checked /><label for="star5" title="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+                    </div>
+                </div>
+
+                <!-- အကြံပြုချက်များ -->
+                <div class="flex flex-col">
+                    <label class="form-label fw-semibold small text-slate-700 dark:text-slate-300 mb-1.5" id="lbl-comments" data-i18n="lblComments">အကြံပြုချက်များပေးရန်:</label>
+                    <textarea id="comments" class="form-control form-control-sm shadow-none bg-white/80 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl py-2 px-3" rows="2" placeholder="သင်၏ အကြံပြုချက်များကို ရိုက်ထည့်ပေးပါရန်..." maxlength="500" data-i18n="commentsPlaceholder"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-2">
+                    <button type="submit" id="submit-btn" class="w-full py-3 rounded-full fw-bold animate-btn-gradient text-slate-950 shadow-[0_6px_20px_rgba(217,119,6,0.35),inset_0_2px_3px_rgba(255,255,255,0.6)] hover:scale-[1.02] active:scale-95 transition-all duration-300 text-center border border-amber-300 text-sm" onmouseenter="startHoverSpark(event)" onmouseleave="stopHoverSpark(event)" data-i18n="submitBtn">ပေးပို့ပါမည်</button>
+                </div>
+            </form>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
